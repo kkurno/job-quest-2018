@@ -1,11 +1,12 @@
 import initialState from './initialState'
+import { SET_VALUE } from '../actions'
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'ACTION_NAME':
+    case SET_VALUE:
       return {
         ...state,
-        /* keyname: payload */
+        ...payload
       }
     default:
       return state
