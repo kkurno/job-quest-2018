@@ -6,7 +6,7 @@
  */
 
 const createDeepObj = (path, value) => {
-  if (path === '') throw new Error("don't input empty string in the first parameter")
+  if (path === '') throw new Error("the first parameter must not be empty string")
 
   const arrayPath = path.split('.')
   let obj = ''
