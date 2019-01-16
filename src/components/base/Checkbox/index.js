@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { compose, withHandlers } from 'recompose'
+import { compose, withHandlers, setPropTypes } from 'recompose'
 
 import withData from '../../behavior/withData'
 import withSetData from '../../behavior/withSetData'
@@ -25,9 +25,9 @@ const Space = styled.div`
   width: 100%;
 `
 
-const Checkbox = ({ titleText = '', choices = [], handleSelect, selectedChoices}) => (
+const Checkbox = ({ titleText, choices = [], handleSelect, selectedChoices}) => (
   <Container>
-    <Title>{ titleText }</Title>
+    <Title>{titleText}</Title>
     {
       choices.map(
         choice => (
@@ -45,13 +45,13 @@ const Checkbox = ({ titleText = '', choices = [], handleSelect, selectedChoices}
   </Container>
 )
 
-Checkbox.propTypes = {
-  titleText: PropTypes.string,
-  choices: PropTypes.array,
-  selectedChoices: PropTypes.array.isRequired,
-}
-
 export default compose(
+  setPropTypes({
+    pathToData: PropTypes.string.isRequired,
+    selectedChoices: PropTypes.array.isRequired, // it come from withData
+    titleText: PropTypes.string,
+    choices: PropTypes.array,
+  }),
   withSetData,
   withData(null, 'selectedChoices'),
   withHandlers({
