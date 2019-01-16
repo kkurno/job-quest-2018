@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { registerObserver } from 'react-perf-devtool'
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
@@ -9,6 +10,8 @@ import reducer from './reducers'
 import saga from './sagas'
 import GlobalStyle from './GlobalStyle'
 import App from './App'
+
+registerObserver()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
