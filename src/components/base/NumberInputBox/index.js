@@ -6,6 +6,8 @@ import { compose, withHandlers, setPropTypes } from 'recompose'
 import withData from '../../behavior/withData'
 import withSetData from '../../behavior/withSetData'
 
+import U from '../../../utilities'
+
 const Container = styled.div`
   max-width: fit-content;
 `
@@ -21,34 +23,36 @@ const Input = styled.input.attrs({
   border-radius: 5px;
   padding: 0 3px 0 3px;
   height: 23px;
-  width: 150px;
+  width: 50px;
 
   :focus {
     outline: none;
   }
 `
 
-const TextInputBox = ({ textTitle, handleChange, textInput }) => (
+const NumberInputBox = ({ textTitle, numberInput, handleChange }) => (
   <Container>
     <Title>{textTitle}</Title>
-    <Input onChange={handleChange} value={textInput}/>
+    <Input onChange={handleChange} value={numberInput}/>
   </Container>
 )
 
 export default compose(
   withSetData,
-  withData(null, 'textInput'),
+  withData(null, 'numberInput'),
   withHandlers({
-    handleChange: ({ setData, pathToData, maxLength = 100, textInput }) => (event) => {
-      if (event.target.value.length <= maxLength && event.target.value.length !== textInput.length) {
-        setData(pathToData, event.target.value)
-      }
-    }
+    handleChange: ({ setData, pathToData, min = 1, max = 65535, numberInput }) => (event) => {
+      const value = U.trimNumber(event.target.value, min, max)
+
+      if (value !== numberInput) setData(pathToData, value)
+    },
   }),
   setPropTypes({
     pathToData: PropTypes.string.isRequired,
     textTitle: PropTypes.string,
-    maxLength: PropTypes.number,
-    textInput: PropTypes.string, // it come from withData
+    numberInput: PropTypes.number, // it come from withData
+    min: PropTypes.number,
+    max: PropTypes.number,
   }),
-)(TextInputBox)
+
+)(NumberInputBox)

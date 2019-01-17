@@ -9,49 +9,36 @@ import withSetData from '../../behavior/withSetData'
 import Choice from './Choice'
 
 const Container = styled.div`
-  padding: 4px 6px;
-  border: 1px solid gray;
-  border-radius: 8px;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: fit-content;
 `
 
-const Title = styled.div`
-  text-align: center;
-  border-bottom: 1px dashed gray;
-  margin-bottom: 4px;
+const Title = styled.span`
+  margin-right: 5px;
 `
 
 const Space = styled.div`
-  height: 4px;
-  width: 100%;
+  width: 10px;
 `
 
-const Checkbox = ({ titleText, choices = [], handleSelect, selectedChoices}) => (
+const Checkbox = ({ textTitle, choices = [], handleSelect, selectedChoices}) => (
   <Container>
-    <Title>{titleText}</Title>
-    {
-      choices.map(
-        choice => (
-          <React.Fragment key={choice}>
-            <Choice
-              isSelected={selectedChoices.includes(choice)}
-              name={choice}
-              handleOnClick={handleSelect}
-            />
-            <Space />
-          </React.Fragment>
-        )
-      )
-    }
+    <Title>{textTitle}</Title>
+      {choices.map(choice => (
+        <React.Fragment key={choice}>
+          <Choice
+            isSelected={selectedChoices.includes(choice)}
+            name={choice}
+            handleOnClick={handleSelect}
+          />
+          <Space />
+        </React.Fragment>
+      ))}
   </Container>
 )
 
 export default compose(
-  setPropTypes({
-    pathToData: PropTypes.string.isRequired,
-    selectedChoices: PropTypes.array.isRequired, // it come from withData
-    titleText: PropTypes.string,
-    choices: PropTypes.array,
-  }),
   withSetData,
   withData(null, 'selectedChoices'),
   withHandlers({
@@ -64,5 +51,11 @@ export default compose(
         setData(pathToData, [...selectedChoices, choice])
       }
     },
+  }),
+  setPropTypes({
+    pathToData: PropTypes.string.isRequired,
+    selectedChoices: PropTypes.array.isRequired, // it come from withData
+    choices: PropTypes.array.isRequired,
+    textTitle: PropTypes.string,
   }),
 )(Checkbox)
