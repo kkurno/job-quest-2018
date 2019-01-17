@@ -4,6 +4,6 @@ export default {
     surname: '',
     lastname: '',
     categories: [],
-    number: 10,
+    number: 20,
   },
 }

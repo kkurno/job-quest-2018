@@ -1,27 +1,26 @@
 /**
  *
  *@example
- * createDeepObj('a.b.c', 1) //=> {a:{b:{c:1}}}
- * createDeepObj('a.b.c', [1]) //=> {a:{b:{c:[1]}}}
+ * createDeepObj(['a','b','c'], 1) //=> {a:{b:{c:1}}}
+ * createDeepObj(['a','b','c'], [1]) //=> {a:{b:{c:[1]}}}
  */
 
 const createDeepObj = (path, value) => {
-  if (path === '') throw new Error("the first parameter must not be empty string")
+  if (Array.isArray(path)) throw new Error("the first parameter must be array")
 
-  const arrayPath = path.split('.')
   let obj = ''
   let braces = ''
 
-  arrayPath.forEach((keyName, i) => {
-    braces += '}'
+  path.forEach((keyName, i) => {
     obj += `{"${keyName}":`
+    braces += '}'
 
-    if (i === arrayPath.length - 1) {
+    if (i === path.length - 1) {
       obj += `${JSON.stringify(value)}${braces}`
     }
   })
 
-  return JSON.parse(obj)
+  return path.length ? JSON.parse(obj) : []
 }
 
 export default createDeepObj
