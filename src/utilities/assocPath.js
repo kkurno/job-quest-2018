@@ -1,3 +1,11 @@
+/**
+ * used for deep injection value into object (by replacing value)
+ * @example
+ * assocPath(['a','b','c'], 'new', {a: {b: {c: 'old'}}}) // => {a: {b: {c: 'new'}}}
+ * assocPath(['a','b','c'], 'new', {a: {b: {c: 'old', d: 'old'}}}) // => {a: {b: {c: 'new', d: 'old'}}}
+ * assocPath(['a','b','c'], 'new', {a: {b: {c: ['old']}}) // => {a: {b: {c: 'new'}}}
+ */
+
 import isObject from './isObject'
 
 const assocPath = (path, val, obj) => {
