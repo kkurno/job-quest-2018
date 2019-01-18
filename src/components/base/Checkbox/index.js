@@ -16,17 +16,17 @@ const Container = styled.div`
 
 const ChoiceContainer = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: ${props => props.inline ? 'row wrap' : 'column nowrap'};
 `
 
 const Title = styled.span`
   margin-right: 5px;
 `
 
-const Checkbox = ({ textTitle, choices = [], handleSelect, selectedChoices}) => (
+const Checkbox = ({ textTitle, choices = [], handleSelect, selectedChoices, inline = false}) => (
   <Container>
     <Title>{textTitle}</Title>
-    <ChoiceContainer>
+    <ChoiceContainer inline={inline}>
       {choices.map(choice => (
         <Choice
           spaceSize={'4px'}
@@ -59,5 +59,6 @@ export default compose(
     selectedChoices: PropTypes.array.isRequired, // it come from withData
     choices: PropTypes.array.isRequired,
     textTitle: PropTypes.string,
+    inline: PropTypes.bool,
   }),
 )(Checkbox)

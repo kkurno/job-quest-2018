@@ -10,6 +10,8 @@ import U from '../../../utilities'
 
 const Container = styled.div`
   max-width: fit-content;
+  display: flex;
+  flex-flow: row nowrap;
 `
 
 const Title = styled.span`
@@ -41,7 +43,7 @@ export default compose(
   withSetData,
   withData(null, 'numberInput'),
   withHandlers({
-    handleChange: ({ setData, pathToData, min = 1, max = 65535, numberInput }) => (event) => {
+    handleChange: ({ setData, pathToData, min = 0, max = 65535, numberInput }) => (event) => {
       const value = U.trimNumber(event.target.value, min, max)
 
       if (value !== numberInput) setData(pathToData, value)

@@ -7,7 +7,8 @@ import withData from '../../behavior/withData'
 import withSetData from '../../behavior/withSetData'
 
 const Container = styled.div`
-  max-width: fit-content;
+  display: flex;
+  flex-flow: row nowrap;
 `
 
 const Title = styled.span`

@@ -8,7 +8,7 @@ import withData from '../../behavior/withData'
 
 import U from '../../../utilities'
 
-const ROW_HEIGHT = 100
+const ROW_HEIGHT = 75
 
 const Text = styled.div`
   padding: 10px;
@@ -16,9 +16,9 @@ const Text = styled.div`
   max-height: ${ROW_HEIGHT - 30}px;
   min-height: 30px;
   overflow: auto;
+  border-right: 2px solid #e5e5e5;
+  border-bottom: 1px solid #d3d3d3;
   border-radius: 5px;
-  -webkit-box-shadow: 2px 2px 5px 0 gray;
-  box-shadow: 2px 2px 5px 0 gray;
 `
 
 const rowRenderer = ({
@@ -29,7 +29,7 @@ const rowRenderer = ({
   index,
   style,
 }) => {
-  const text = U.path([dataKey], list[index])
+  const text = U.path([dataKey], '', list[index])
 
   return (
     <div key={key} style={style}>
@@ -42,6 +42,7 @@ const CardList = ({ list, ...props }) => (
   <AutoSizer>
     {({ height, width }) => (
       <List
+        style={{ outline: 'none', paddingTop: '10px' }}
         height={height}
         width={width}
         rowCount={list.length}
@@ -54,7 +55,7 @@ const CardList = ({ list, ...props }) => (
 
 export default compose(
   withData(null, 'list'),
-  shouldUpdate((props, nextProps) => U.compare_carelessly(props.list, nextProps.list)),
+  shouldUpdate((props, nextProps) => (!U.compare_carelessly(props.list, nextProps.list))),
   setPropTypes({
     pathToData: PropTypes.string.isRequired,
     list: PropTypes.array.isRequired, // it come from withData
