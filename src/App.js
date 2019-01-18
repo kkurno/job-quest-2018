@@ -79,7 +79,7 @@ const App = ({ fetchJoke }) => (
         <TextInputBox pathToData={'options.firstname'} textTitle={FIRSTNAME_TITLE}/>
         <TextInputBox pathToData={'options.lastname'} textTitle={LASTNAME_TITLE}/>
         <JokeCategoryCheckbox pathToData={'options.categories'} textTitle={CATEGORY_TITLE} inline={true}/>
-        <NumberInputBox pathToData={'options.amount'} textTitle={AMOUNT_TITLE} min={1} max={1000} />
+        <NumberInputBox pathToData={'options.amount'} textTitle={AMOUNT_TITLE} min={1} />
       </OptionColumn1>
       <OptionColumn2>
         <Button text={FETCH_BUTTON} color={'primary'} handleClick={fetchJoke}/>
