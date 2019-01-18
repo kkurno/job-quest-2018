@@ -10,31 +10,33 @@ import Choice from './Choice'
 
 const Container = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   max-width: fit-content;
+`
+
+const ChoiceContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
 `
 
 const Title = styled.span`
   margin-right: 5px;
 `
 
-const Space = styled.div`
-  width: 10px;
-`
-
 const Checkbox = ({ textTitle, choices = [], handleSelect, selectedChoices}) => (
   <Container>
     <Title>{textTitle}</Title>
+    <ChoiceContainer>
       {choices.map(choice => (
-        <React.Fragment key={choice}>
-          <Choice
-            isSelected={selectedChoices.includes(choice)}
-            name={choice}
-            handleOnClick={handleSelect}
-          />
-          <Space />
-        </React.Fragment>
+        <Choice
+          spaceSize={'4px'}
+          key={choice}
+          isSelected={selectedChoices.includes(choice)}
+          name={choice}
+          handleOnClick={handleSelect}
+        />
       ))}
+    </ChoiceContainer>
   </Container>
 )
 

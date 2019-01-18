@@ -1,5 +1,5 @@
 export default {
-  joke: {},
+  jokes: [],
   options: {
     surname: '',
     lastname: '',

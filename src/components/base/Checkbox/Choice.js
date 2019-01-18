@@ -7,6 +7,8 @@ import { ReactComponent as TickIcon } from '../../../assets/icons/tick_icon.svg'
 const Container = styled.div`
   display: flex;
   align-items: center;
+  margin-right: ${props => props.spaceSize};
+  margin-bottom: ${props => props.spaceSize};
 `
 
 const Frame = styled.span`
@@ -18,8 +20,8 @@ const Frame = styled.span`
   text-align: center;
 `
 
-const Choice = ({ name = '', isSelected = false, handleClick }) => (
-  <Container>
+const Choice = ({ name = '', isSelected = false, handleClick, spaceSize }) => (
+  <Container spaceSize={spaceSize}>
     <Frame onClick={handleClick}>
       { isSelected ? <TickIcon /> : null }
     </Frame>
