@@ -1,5 +1,6 @@
 export const SET_DATA = 'SET_DATA'
 export const FETCH_JOKE = 'FETCH_JOKE'
+export const FETCH_JOKE_CATEGORY = 'FETCH_JOKE_CATEGORY'
 export const SET_LOADING = 'SET_LOADING'
 
 /**
@@ -21,6 +22,10 @@ export const setData = (path, data) => ({
 
 export const fetchJoke = () => ({
   type: FETCH_JOKE
+})
+
+export const fetchJokeCategory = () => ({
+  type: FETCH_JOKE_CATEGORY
 })
 
 /**

@@ -1,11 +1,11 @@
-import { all, call, put, select, takeLatest } from 'redux-saga/effects'
+import { all, call, put, select, takeEvery } from 'redux-saga/effects'
 
-import { setData, setLoading, FETCH_JOKE } from '../actions'
-import { fetchJoke }from '../services' 
+import { setData, setLoading, FETCH_JOKE, FETCH_JOKE_CATEGORY } from '../actions'
+import { fetchJoke, fetchJokeCategory }from '../services' 
 
 import U from '../utilities'
 
-import { FAILED_TO_GET_JOKE, BUG } from '../constants/message'
+import { FAILED_TO_GET_JOKE, SOMETHING_WENT_WRONG, BUG } from '../constants/message'
 
 function* watchFetchingJoke() {
   yield put(setLoading(true))
@@ -22,8 +22,26 @@ function* watchFetchingJoke() {
   yield put(setLoading(false))
 }
 
+function* watchFetchingJokeCategory() {
+  try {
+    const categories = yield call(fetchJokeCategory)
+    const { type, value } = categories
+
+    if (type === 'success') {
+      yield put(setData('jokeCategories', value))
+    }
+    else {
+      alert(SOMETHING_WENT_WRONG)
+      window.location.reload()
+    }
+  } catch (e) {
+    alert(BUG)
+  }
+}
+
 export default function* saga() {
   yield all([
-    takeLatest(FETCH_JOKE, watchFetchingJoke)
+    takeEvery(FETCH_JOKE, watchFetchingJoke),
+    takeEvery(FETCH_JOKE_CATEGORY, watchFetchingJokeCategory),
   ])
 }

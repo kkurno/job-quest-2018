@@ -1,5 +1,6 @@
 export default {
   jokes: [],
+  jokeCategories: [],
   options: {
     firstname: '',
     lastname: '',
