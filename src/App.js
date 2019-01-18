@@ -5,11 +5,12 @@ import { compose, lifecycle } from 'recompose'
 import withFetchJoke from './components/behavior/withFetchJoke'
 
 import Overlay from './components/base/Overlay'
-import Checkbox from './components/base/Checkbox'
 import TextInputBox from './components/base/TextInputBox'
 import NumberInputBox from './components/base/NumberInputBox'
 import CardList from './components/base/CardList'
 import Button from './components/base/Button'
+import TotalJokeTag from './components/hybrid/TotalJokeTag'
+import JokeCategoryCheckbox from './components/hybrid/CheckboxWithFetchingChoice/JokeCategoryCheckbox'
 
 import {
   FIRSTNAME_TITLE,
@@ -17,6 +18,7 @@ import {
   CATEGORY_TITLE,
   AMOUNT_TITLE,
   FETCH_BUTTON,
+  TOTAL_TAG,
 } from './constants/component'
 
 const OPTION_ROW_HEIGHT = 145
@@ -40,6 +42,7 @@ const OptionColumn1 = styled.div`
 
 const OptionColumn2 = styled.div`
   display: flex;
+  flex-flow: column nowrap;
   width: fit-content;
   align-items: center;
   justify-content: center;
@@ -75,11 +78,12 @@ const App = ({ fetchJoke }) => (
       <OptionColumn1>
         <TextInputBox pathToData={'options.firstname'} textTitle={FIRSTNAME_TITLE}/>
         <TextInputBox pathToData={'options.lastname'} textTitle={LASTNAME_TITLE}/>
-        <Checkbox pathToData={'options.categories'} textTitle={CATEGORY_TITLE} inline={true} choices={['esdsdiei','zxcxzczeie2']}/>
-        <NumberInputBox pathToData={'options.amount'} textTitle={AMOUNT_TITLE} min={1} max={300} />
+        <JokeCategoryCheckbox pathToData={'options.categories'} textTitle={CATEGORY_TITLE} inline={true}/>
+        <NumberInputBox pathToData={'options.amount'} textTitle={AMOUNT_TITLE} min={1} max={1000} />
       </OptionColumn1>
       <OptionColumn2>
         <Button text={FETCH_BUTTON} color={'primary'} handleClick={fetchJoke}/>
+        <TotalJokeTag pathToData={'jokes'} title={TOTAL_TAG} color={'green'}/>
       </OptionColumn2>
     </OptionRow>
   </Container>
