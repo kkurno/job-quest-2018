@@ -18,7 +18,7 @@ import U from '../../utilities'
 
 const mapStateToProps = (inputPath, propName) => (state, { pathToData = '' }) => {
   const path = inputPath ? inputPath.split('.') : pathToData.split('.')
-  return {[propName]: U.path(path, state)}
+  return {[propName]: U.path(path, undefined, state)}
 }
 
 export default (pathToData, propName) => component => connect(mapStateToProps(pathToData, propName))(component)

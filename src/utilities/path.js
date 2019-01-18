@@ -2,13 +2,12 @@
  *used for breaking into object
  *
  *@example
- *  path(['a', 'b'], {a: {b: 1 }}) //=> 1
- *  path(['a', 'b'], {c: {b: 1}}) //=> undefined
- *  path(['a', 'b', 'c'], {a: {b: 1}}) //=> undefined
- *  path(['a', 'b', 'c'], {a: {b: {d: 1}}}, 2) //=> 2
+ *  path(['a', 'b'], 1, {a: {b: 1 }}) //=> 1
+ *  path(['a', 'b'], undefined, {c: {b: 1}}) //=> undefined
+ *  path(['a', 'b', 'c'], 2, {a: {b: {d: 1}}}) //=> 2
  */
 
-const path = (paths, objData, defalutValue) => {
+const path = (paths, defalutValue, objData) => {
   let currentValue = objData
 
   for (let i = 0; i < paths.length; i++) {

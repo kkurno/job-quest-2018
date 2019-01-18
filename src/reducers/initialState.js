@@ -1,9 +1,9 @@
 export default {
   jokes: [],
   options: {
-    surname: '',
+    firstname: '',
     lastname: '',
     categories: [],
-    number: 20,
+    amount: 30,
   },
 }
