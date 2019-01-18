@@ -8,6 +8,8 @@ import withData from '../../behavior/withData'
 
 import U from '../../../utilities'
 
+// fix row height for react-virtualized
+
 const ROW_HEIGHT = 75
 
 const Text = styled.div`

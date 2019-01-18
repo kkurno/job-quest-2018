@@ -1,6 +1,6 @@
 import React  from 'react'
 import styled from 'styled-components'
-import { compose } from 'recompose'
+import { compose, lifecycle } from 'recompose'
 
 import withFetchJoke from './components/behavior/withFetchJoke'
 
@@ -87,4 +87,10 @@ const App = ({ fetchJoke }) => (
 
 export default compose(
   withFetchJoke,
+  lifecycle({
+    componentDidMount() {
+      const { fetchJoke } = this.props
+      fetchJoke()
+    }
+  })
 )(App)
