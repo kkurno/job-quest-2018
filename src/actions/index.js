@@ -1,5 +1,6 @@
 export const SET_DATA = 'SET_DATA'
 export const FETCH_JOKE = 'FETCH_JOKE'
+export const SET_LOADING = 'SET_LOADING'
 
 /**
  * @example
@@ -20,4 +21,9 @@ export const setData = (path, data) => ({
 
 export const fetchJoke = () => ({
   type: FETCH_JOKE
+})
+
+export const setLoading = (isLoading) => ({
+  type: SET_LOADING,
+  payload: isLoading
 })

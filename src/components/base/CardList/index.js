@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { compose, setPropTypes, shouldUpdate } from 'recompose'
+import { compose, setPropTypes } from 'recompose'
 import { AutoSizer, List } from 'react-virtualized'
 
 import withData from '../../behavior/withData'
@@ -55,7 +55,6 @@ const CardList = ({ list, ...props }) => (
 
 export default compose(
   withData(null, 'list'),
-  shouldUpdate((props, nextProps) => (!U.compare_carelessly(props.list, nextProps.list))),
   setPropTypes({
     pathToData: PropTypes.string.isRequired,
     list: PropTypes.array.isRequired, // it come from withData

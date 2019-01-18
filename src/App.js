@@ -4,6 +4,7 @@ import { compose } from 'recompose'
 
 import withFetchJoke from './components/behavior/withFetchJoke'
 
+import Overlay from './components/base/Overlay'
 import Checkbox from './components/base/Checkbox'
 import TextInputBox from './components/base/TextInputBox'
 import NumberInputBox from './components/base/NumberInputBox'
@@ -66,6 +67,7 @@ const ItemRow = styled.div`
 
 const App = ({ fetchJoke }) => (
   <Container>
+    <Overlay pathToData={'loading'}/>
     <ItemRow>
       <CardList pathToData={'jokes'} dataKey={'joke'}/>
     </ItemRow>
